@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 405c4513c22025b48b2a26e7a26715af, type: 2}
+--- !u!195 &428937174 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5620322637704001470, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
+  m_PrefabInstance: {fileID: 5620322638099380328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &538046153
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deBug: 0
   moveSpeed: 5
+  delayTime: 0
 --- !u!224 &2605811522893511991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -768,6 +774,18 @@ PrefabInstance:
       propertyPath: tvc
       value: 
       objectReference: {fileID: 540106555}
+    - target: {fileID: 5620322637704001457, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 428937174}
+    - target: {fileID: 5620322637704001457, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
+      propertyPath: navMeshAgent
+      value: 
+      objectReference: {fileID: 428937174}
+    - target: {fileID: 5620322637704001459, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
+      propertyPath: delayTime
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 5620322637704001470, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
       propertyPath: m_AutoBraking
       value: 1
@@ -882,6 +900,7 @@ MonoBehaviour:
   fpsc: {fileID: 5198697034988662912}
   tPSController: {fileID: 8856949758083175466}
   playerMove: {fileID: 1128038545361130605}
+  navMeshAgent: {fileID: 0}
 --- !u!114 &8856949758083175466
 MonoBehaviour:
   m_ObjectHideFlags: 0

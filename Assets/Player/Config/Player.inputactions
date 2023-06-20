@@ -25,12 +25,12 @@
                 },
                 {
                     "name": "Change",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "66c71f08-e369-4278-a1d9-737a757e77dc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

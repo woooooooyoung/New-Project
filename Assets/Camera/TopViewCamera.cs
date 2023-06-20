@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class TopViewCamera : MonoBehaviour
 {
+    [SerializeField] float rotateSpeed;
+
     public GameObject cameraTarget;
     public Transform zoomTarget;
     public float zoom;
@@ -16,6 +18,14 @@ public class TopViewCamera : MonoBehaviour
 
     public float delayTime;
 
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     private void Start()
     {
         transforms = GetComponent<Transform>();
@@ -26,6 +36,10 @@ public class TopViewCamera : MonoBehaviour
         TargetDist = Vector3.Normalize(TargetDist);
 
         transforms.position -= (TargetDist * Input.GetAxis("Mouse ScrollWheel") * zoom);
+    }
+    private void FixedUpdate()
+    {
+        
     }
     private void Update()
     {

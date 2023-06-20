@@ -2,32 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraChange: MonoBehaviour
 {
-    private FPSCamera fps;
-    private TopViewCamera top;
-    public GameObject camera;
+   /* public FPSCamera fps;
+    public TopViewCamera tvc;
+    
+    //public GameObject camera;
 
     private void Awake()
     {
         fps = GetComponent<FPSCamera>();
-        top = GetComponent<TopViewCamera>();
+        //tvc = GetComponent<TopViewCamera>();
     }
-    private void Start()
+    private void Update()
     {
-        top = GetComponent<TopViewCamera>();
+        
     }
-    private void Change(InputValue value)
+    private void Change()
     {
-        if(fps)
+        if (Input.GetKeyUp(KeyCode.V)) 
         {
-            GetComponent<TopViewCamera>();
-        }
-        else if (top)
-        {
-            GetComponent<FPSCamera>();
-            
+            if(fps)
+            {
+                Debug.Log("FPSoff");
+            }
+            else if (tvc)
+            {
+                Debug.Log("TPSOn");
+            }
+
         }
     }
+    private void OnChange(InputValue value)
+    {
+        Change();
+    }*/
 }

@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32be431ccbb9a5b47857e60b76c790cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  navMeshAgent: {fileID: 0}
 --- !u!114 &540106552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +865,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5866666021381488537}
     - target: {fileID: 5620322637704001457, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
+      propertyPath: tPSClick
+      value: 
+      objectReference: {fileID: 5866666021381488547}
+    - target: {fileID: 5620322637704001457, guid: a175fbb9702b8234883fd73b4b1db004, type: 3}
       propertyPath: animatorIdle
       value: 
       objectReference: {fileID: 0}
@@ -904,7 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32be431ccbb9a5b47857e60b76c790cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 5866666021381488545}
+  navMeshAgent: {fileID: 5866666021381488545}
 --- !u!1001 &7567971820077665693
 PrefabInstance:
   m_ObjectHideFlags: 0

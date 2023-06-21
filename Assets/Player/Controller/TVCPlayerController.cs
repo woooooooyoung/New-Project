@@ -8,29 +8,39 @@ using UnityEngine.TextCore.Text;
 public class TVCPlayerController : MonoBehaviour
 {
     NavMeshAgent agent;
+    private bool isMove;
+    private Vector3 destination;
+    private Animator animator;
 
+
+    private void Start()
+    {
+        animator.StopPlayback();
+    }
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        destination = Vector3.zero;
+        
     }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("좌클릭 누름");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+
+            if(Physics.Raycast(ray, out RaycastHit hit))
             {
                 agent.SetDestination(hit.point);
+                animator.SetFloat("TPSSpeed", 2.0f);
             }
         }
-        else if (Input.GetMouseButtonDown(1))
+        if (agent.remainingDistance < 0.1f)
         {
-            Debug.Log("우클릭 누름");
-        }
-        else if(Input.GetMouseButtonDown(2))
-        {
-            Debug.Log("휠버튼 누름");
+            animator.SetFloat("TPSSpeed", 0f);
+            
         }
     }
 }

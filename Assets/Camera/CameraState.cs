@@ -2,25 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.UI;
 
 public class CameraState : MonoBehaviour
 {
     public enum Stats {FPS, TVC}
     [SerializeField] GameObject fps;
     [SerializeField] GameObject tvc;
+
+    [SerializeField] FPSCamera fpsc;
+    [SerializeField] TVCPlayerController tPSController;
+    [SerializeField] PlayerMove playerMove;
+    [SerializeField] TPSClick tPSClick;
+
+    [SerializeField] NavMeshAgent navMeshAgent;
+    private Animator animator;
+
+    //public Rigidbody rigidbody;
     //[SerializeField] PlayerInput fpsInputAciton;
     //[SerializeField] PlayerInput tvcInputAciton;
     //[SerializeField] Component fpsc;
-    [SerializeField] FPSCamera fpsc;
     //[SerializeField] TopViewCamera tvcc;
-    [SerializeField] TVCPlayerController tvcc;
 
 
 
     private Stats stats = Stats.FPS;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        ChangeFPS();
+    }
 
     private void Update()
     {
@@ -37,42 +55,67 @@ public class CameraState : MonoBehaviour
 
     private void FPSUpdate()
     {
-        fps.SetActive(true);
-        tvc.SetActive(false);
-
-        tvcc.enabled = false;
-
-        //fpsInputAciton.enabled = true;
-
-        Debug.Log("FPS");
-        fpsc.enabled = true;
-        
-        //tvcc.enabled = false;
         if (Input.GetKeyDown(KeyCode.V))
         {
-            //if (stats == Stats.FPS)
-            //{
-            stats = Stats.TVC;
-            //}
+            ChangeTVC();
         }
     }
     private void TVCUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ChangeFPS();
+        }
+    }
+
+    private void ChangeFPS()
+    {
+        stats = Stats.FPS;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        fps.SetActive(true);
+        tvc.SetActive(false);
+
+        tPSController.enabled = false;
+        playerMove.enabled = true;
+        navMeshAgent.enabled = false;
+        tPSClick.enabled = false;
+
+        Debug.Log("FPS");
+        fpsc.enabled = true;
+        StopTPS();
+    }
+
+    private void ChangeTVC()
+    {
+        stats = Stats.TVC;
+        Cursor.lockState = CursorLockMode.Confined;
+
         fps.SetActive(false);
         tvc.SetActive(true);
 
-        tvcc.enabled = true;
-        //fpsInputAciton.enabled = false;
+        tPSController.enabled = true;
+        playerMove.enabled = false;
+        navMeshAgent.enabled = true;
+        tPSClick.enabled = true;
+
 
         Debug.Log("TVC");
-        //tvcc.enabled = true;
         fpsc.enabled = false;
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            //if (stats == Stats.TVC) 
-            //{
-            stats = Stats.FPS;
-            //}
-        }
+        StopFPS();
+        StopAgent();
     }
+    private void StopFPS()
+    {
+        Debug.Log("FPS1");
+        animator.SetFloat("XSpeed", 0f);
+        animator.SetFloat("YSpeed", 0f);
+        animator.SetFloat("FPSSpeed", 0f);
+    }
+    private void StopTPS()
+    {
+        Debug.Log("TPS1");
+        animator.SetFloat("TPSSpeed", 0f);
+    }
+
 }

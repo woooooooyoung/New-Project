@@ -12,14 +12,6 @@ public class FPSCamera : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
-    private void OnEnable()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-    private void OnDisable()
-    {
-        Cursor.lockState = CursorLockMode.None;
-    }
     private void LateUpdate()
     {
         Look();

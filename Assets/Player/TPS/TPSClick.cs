@@ -28,15 +28,15 @@ public class TPSClick : MonoBehaviour
     }
     private void StopAgent()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            navMeshAgent.enabled = false;
-
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            navMeshAgent.enabled = true;
-        }
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    navMeshAgent.enabled = false;
+        //
+        //}
+        //else if (Input.GetKeyUp(KeyCode.LeftShift))
+        //{
+        //    navMeshAgent.enabled = true;
+        //}
     }
     /*private Camera mainCamera;
 

@@ -16,6 +16,8 @@ public class CameraState : MonoBehaviour
     [SerializeField] TVCPlayerController tPSController;
     [SerializeField] PlayerMove playerMove;
     [SerializeField] TPSClick tPSClick;
+    [SerializeField] TPSCharacterController tpsCharacterController;
+    [SerializeField] TPSMove tPSMove;
 
     [SerializeField] NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -80,6 +82,8 @@ public class CameraState : MonoBehaviour
         playerMove.enabled = true;
         navMeshAgent.enabled = false;
         tPSClick.enabled = false;
+        tpsCharacterController.enabled = false;
+        tPSMove.enabled = false;
 
         Debug.Log("FPS");
         fpsc.enabled = true;
@@ -98,12 +102,13 @@ public class CameraState : MonoBehaviour
         playerMove.enabled = false;
         navMeshAgent.enabled = true;
         tPSClick.enabled = true;
+        tpsCharacterController.enabled = true;
+        tPSMove.enabled = true;
 
 
         Debug.Log("TVC");
         fpsc.enabled = false;
         StopFPS();
-        StopAgent();
     }
     private void StopFPS()
     {

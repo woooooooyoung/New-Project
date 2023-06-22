@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveState : MonoBehaviour
-{
-   /* private CharacterController characterController;
-    private Animator animator;
+{/*
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+    [SerializeField] float delayTime;
+
+    private float moveSpeed;
+    private Vector3 moveDir;
+    private CharacterController characterController;
+    
 
     public enum States { Walk, Run}
     private States states = States.Walk;
@@ -29,7 +35,7 @@ public class MoveState : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        
     }
     private void WalkUpdate()
     {
@@ -40,6 +46,7 @@ public class MoveState : MonoBehaviour
     }
     private void RunUpdate()
     {
+
         if (Input.GetKeyDown(KeyCode.C)) 
         {
             OnWalk();
@@ -47,10 +54,10 @@ public class MoveState : MonoBehaviour
     }
     private void OnRun()
     {
-        animator.SetFloat("FPSSPeed", 3.5f);
+
     }
     private void OnWalk()
     {
-        animator.SetFloat("FPSSPeed", 1f);
+
     }*/
 }

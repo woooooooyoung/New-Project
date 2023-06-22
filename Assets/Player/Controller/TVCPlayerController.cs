@@ -12,10 +12,17 @@ public class TVCPlayerController : MonoBehaviour
     private Vector3 destination;
     private Animator animator;
 
+
+    private void Start()
+    {
+        animator.StopPlayback();
+    }
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        destination = Vector3.zero;
+        
     }
 
     private void Update()
@@ -33,7 +40,13 @@ public class TVCPlayerController : MonoBehaviour
         if (agent.remainingDistance < 0.1f)
         {
             animator.SetFloat("TPSSpeed", 0f);
-            
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Debug.Log("ls");
+            agent.ResetPath();
+            animator.SetFloat("TPSSpeed", 0f);
         }
     }
+
 }

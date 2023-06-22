@@ -7,7 +7,7 @@ using UnityEngine.TextCore.Text;
 
 public class TVCPlayerController : MonoBehaviour
 {
-    NavMeshAgent agent;
+    /*NavMeshAgent agent;
     private bool isMove;
     private Vector3 destination;
     private Animator animator;
@@ -30,7 +30,7 @@ public class TVCPlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        
             if(Physics.Raycast(ray, out RaycastHit hit))
             {
                 agent.SetDestination(hit.point);
@@ -47,6 +47,7 @@ public class TVCPlayerController : MonoBehaviour
             agent.ResetPath();                      // 네비메쉬에이전트 멈추기
             animator.SetFloat("TPSSpeed", 0f);
         }
-    }
+    }*/
 
+    
 }

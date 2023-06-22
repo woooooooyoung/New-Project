@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,9 +21,6 @@ public class TPSMove : MonoBehaviour
     private NavMeshAgent agent;
     private float time = 0f;
 
-
-
-
     private void Awake()
     {        
         agent = GetComponent<NavMeshAgent>();
@@ -31,15 +29,18 @@ public class TPSMove : MonoBehaviour
     private void Update()
     {
         Dash();
+        PlayerStop();
     }
 
     private void Start()
     {
+        IdleOn();
         AgentSpeed();
         Acceleration();
     }
     private void Dash()
     {
+        PlayerMove();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isCoolTime)
@@ -63,6 +64,45 @@ public class TPSMove : MonoBehaviour
             }
         }
     }
+    private void PlayerMove()
+    {
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) // 마우스 우클릭, 좌클릭으로 이동
+        {
+            
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                agent.SetDestination(hit.point);
+                animator.SetFloat("TPSSpeed", 2.0f);
+
+                Vector3 clickPoint = hit.point; 
+
+                transform.LookAt(new Vector3(clickPoint.x, transform.position.y, clickPoint.z));
+            }
+        }
+        if (agent.remainingDistance < 0.1f)         // 목적지까지 남은 거리가 0.1보다 작으면 도착함
+        {
+            animator.SetFloat("TPSSpeed", 0f);
+        }
+    }
+    private void PlayerStop()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            animator.SetFloat("TPSSpeed", 0f);
+            agent.ResetPath();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            animator.SetFloat("TPSSpeed", 2f);
+            AgentSpeed();
+        }
+    }
+    private void IdleOn()
+    {
+        animator.StopPlayback(); 
+    }
     private void DashAnimatorOn()   // 대쉬의 속도와 상관없이 대쉬애니메이션 진입
     {
         animator.SetFloat("TPSAnimSpeed", dashAnimSpeed);
@@ -74,10 +114,12 @@ public class TPSMove : MonoBehaviour
     private void DashSpeedUp()      // 대쉬속도
     {
         agent.speed = dashSpeed;
+        agent.updateRotation = false; // 대쉬하는동안 회전 막기
     }
     private void DashSpeedDown()    // 대쉬끝난 후 원래속도
     {
         agent.speed = agentSpeed;
+        agent.updateRotation = true; // 대쉬 끝난 후 회전 풀기
     }
     private void AccelerationUP()   // 대쉬하는동안 가속도 증가
     {
@@ -96,3 +138,5 @@ public class TPSMove : MonoBehaviour
         agent.acceleration = acceleration;
     }
 }
+    
+

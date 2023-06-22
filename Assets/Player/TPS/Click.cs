@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Click : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class Click : MonoBehaviour //, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
-    [SerializeField] Color normal;
+    /*[SerializeField] Color normal;
     [SerializeField] Color onMouse;
 
     private Renderer render;
@@ -27,5 +27,22 @@ public class Click : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, 
     public void OnPointerExit(PointerEventData eventData)
     {
         render.material.color = normal;
+    }*/
+    private void OnMouseEnter()
+    {
+        Debug.Log("1");
+    }
+    private void OnMouseExit()
+    {
+        Debug.Log("2");
+    }
+    private void OnMouseUp()
+    {
+        Debug.Log("3");
+        
+    }
+    private void OnMouseDown()
+    {
+        Debug.Log("4");
     }
 }

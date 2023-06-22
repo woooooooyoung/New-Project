@@ -35,11 +35,38 @@
                 {
                     "name": "Run",
                     "type": "Value",
-                    "id": "abc65101-dafe-41bf-b481-27d4dda32992",
-                    "expectedControlType": "Vector2",
+                    "id": "077fbd38-a2c3-4ae8-bbec-6fae261ceeca",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Walk",
+                    "type": "PassThrough",
+                    "id": "a03ffd80-bee3-46e7-80ea-dca3375893a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "c6df0f3f-7fe7-4ee4-aa2b-b6a7f0006c60",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "7209bd75-6897-474b-81b8-f0fa3c8896dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -133,12 +160,45 @@
                 },
                 {
                     "name": "",
-                    "id": "df8fd198-2e75-4337-b8fd-160041e9e1f3",
-                    "path": "<Keyboard>/c",
+                    "id": "9e7e79cb-d88d-4c12-a4dc-f858aa901637",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb32dd74-8713-4c47-af2b-67f882175d7e",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13b40854-ca0b-4524-8485-2af9ce0d23e0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "985b47ba-0c75-4810-ba42-9e817e7fdbb1",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

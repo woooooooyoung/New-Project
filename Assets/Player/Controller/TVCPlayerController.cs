@@ -41,10 +41,10 @@ public class TVCPlayerController : MonoBehaviour
         {
             animator.SetFloat("TPSSpeed", 0f);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))        // LeftShift 누르고있는 상태
         {
             Debug.Log("ls");
-            agent.ResetPath();
+            agent.ResetPath();                      // 네비메쉬에이전트 멈추기
             animator.SetFloat("TPSSpeed", 0f);
         }
     }

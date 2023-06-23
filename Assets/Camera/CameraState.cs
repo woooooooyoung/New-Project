@@ -13,7 +13,7 @@ public class CameraState : MonoBehaviour
     [SerializeField] GameObject tvc;
 
     [SerializeField] FPSCamera fpsc;
-    [SerializeField] TVCPlayerController tPSController;
+    //[SerializeField] TVCPlayerController tPSController;
     [SerializeField] PlayerMove playerMove;
     [SerializeField] TPSClick tPSClick;
     [SerializeField] TPSCharacterController tpsCharacterController;
@@ -78,7 +78,7 @@ public class CameraState : MonoBehaviour
         fps.SetActive(true);
         tvc.SetActive(false);
 
-        tPSController.enabled = false;
+        //tPSController.enabled = false;
         playerMove.enabled = true;
         navMeshAgent.enabled = false;
         tPSClick.enabled = false;
@@ -98,7 +98,7 @@ public class CameraState : MonoBehaviour
         fps.SetActive(false);
         tvc.SetActive(true);
 
-        tPSController.enabled = true;
+        //tPSController.enabled = true;
         playerMove.enabled = false;
         navMeshAgent.enabled = true;
         tPSClick.enabled = true;

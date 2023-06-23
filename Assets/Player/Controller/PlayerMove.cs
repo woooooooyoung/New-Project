@@ -105,7 +105,7 @@ public class PlayerMove : MonoBehaviour
                 moveSpeed = runSpeed; // LiftShift를 눌렀을 때 받는속도 (걷는상태면 뛰고 뛰는상태면 걸어감)
             }
         }
-        if(characterController.isGrounded)
+        if (characterController.isGrounded)
         {
             var h = Input.GetAxis("Horizontal");
             var v = Input.GetAxis("Vertical");
@@ -126,7 +126,7 @@ public class PlayerMove : MonoBehaviour
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 0, 0.5f);
         }
-        else if (moveDir.magnitude > 0 || moveDir.magnitude < 0)    
+        else if (moveDir.magnitude > 0 || moveDir.magnitude < 0)
         {
             moveSpeed = Mathf.Lerp(moveSpeed, runSpeed, 0.5f);
         }
@@ -135,11 +135,11 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("걷고있음");
             if (moveDir.magnitude == 0)
             {
-                moveSpeed = Mathf.Lerp(moveSpeed, 0, 0.5f); 
+                moveSpeed = Mathf.Lerp(moveSpeed, 0, 0.5f);
             }
             else
             {
-                moveSpeed = walkSpeed; 
+                moveSpeed = walkSpeed;
             }
         }
         if (Input.GetKeyDown(KeyCode.C))

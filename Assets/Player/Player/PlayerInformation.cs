@@ -14,7 +14,6 @@ public class PlayerInformation : MonoBehaviour
     {
         gameObject.name = name;
     }
-
     // Update is called once per frame
     void Update()
     {

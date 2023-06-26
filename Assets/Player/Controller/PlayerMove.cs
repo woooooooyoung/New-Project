@@ -15,8 +15,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float walkStepRange;
     [SerializeField] float runStepRange;
 
-    [SerializeField] GameObject GreatSword;
-
     private float moveSpeed;
     private float ySpeed = 0;
     private CharacterController characterController;
@@ -73,7 +71,6 @@ public class PlayerMove : MonoBehaviour
     {
         Move();
         Jump();
-        GreatSwordGet();
         switch (moveing)
         {
             case Moveing.Walk:
@@ -176,37 +173,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (GroundCheck())
             ySpeed = jumpSpeed;
-    }
-    private void GreatSwordGet()
-    {
-        if (GreatSword.activeSelf)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                GreatSword.SetActive(false);
-                GreatSwordMove();
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                GreatSword.SetActive(true);
-                GreatSwordMove();
-            }
-        }
-    }
-
-    private void GreatSwordMove()
-    {
-        if (GreatSword.activeSelf)
-        {
-            animator.SetBool("GreatSword", true);
-        }
-        else
-        {
-            animator.SetBool("GreatSword", false);
-        }
     }
 }
 

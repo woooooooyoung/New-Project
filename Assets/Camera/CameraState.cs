@@ -8,28 +8,30 @@ using UnityEngine.UI;
 
 public class CameraState : MonoBehaviour
 {
-    public enum Stats {FPS, TVC}
+    [Header("GameObject")]
     [SerializeField] GameObject fps;
     [SerializeField] GameObject tvc;
-
+    [Header("FPS")]
     [SerializeField] FPSCamera fpsc;
-    //[SerializeField] TVCPlayerController tPSController;
     [SerializeField] PlayerMove playerMove;
+    [SerializeField] FPSAnimatorChange fpsAnimatorChange;
+    [Header("TPS")]
     [SerializeField] TPSClick tPSClick;
-    [SerializeField] TPSCharacterController tpsCharacterController;
     [SerializeField] TPSMove tPSMove;
-
+    [SerializeField] TPSCharacterController tpsCharacterController;
+    [SerializeField] TPSAnimatorChange tpsAnimatorChange;
+    [Header("Base")]
     [SerializeField] NavMeshAgent navMeshAgent;
-    private Animator animator;
 
+    private Animator animator;
+    //[SerializeField] TVCPlayerController tPSController;
     //public Rigidbody rigidbody;
     //[SerializeField] PlayerInput fpsInputAciton;
     //[SerializeField] PlayerInput tvcInputAciton;
     //[SerializeField] Component fpsc;
     //[SerializeField] TopViewCamera tvcc;
 
-
-
+    public enum Stats {FPS, TVC}
     private Stats stats = Stats.FPS;
 
     private void Awake()
@@ -84,6 +86,8 @@ public class CameraState : MonoBehaviour
         tPSClick.enabled = false;
         tpsCharacterController.enabled = false;
         tPSMove.enabled = false;
+        fpsAnimatorChange.enabled = true;
+        tpsAnimatorChange.enabled = false;
 
         Debug.Log("FPS");
         fpsc.enabled = true;
@@ -104,6 +108,8 @@ public class CameraState : MonoBehaviour
         tPSClick.enabled = true;
         tpsCharacterController.enabled = true;
         tPSMove.enabled = true;
+        fpsAnimatorChange.enabled = false;
+        tpsAnimatorChange.enabled = true;
 
 
         Debug.Log("TVC");

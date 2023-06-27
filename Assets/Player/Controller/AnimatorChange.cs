@@ -23,24 +23,8 @@ public class AnimatorChange : MonoBehaviour
         SwordGet();
         ShieldGet();
         SwordandShieldGet();
-        Aiming();
     }
-    private void Aiming()
-    {
-        if (Rifle.activeSelf)
-        {
-            if (Input.GetMouseButton(1))
-            {
-                animator.SetLayerWeight(6, 1);
-            }
-            else
-            {
-                animator.SetLayerWeight(6, 0);
-            }
 
-        }
-
-    }
     private void GreatSwordGet()
     {
         if (GreatSword.activeSelf)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -15,6 +16,8 @@ public class CameraState : MonoBehaviour
     [SerializeField] FPSCamera fpsc;
     [SerializeField] PlayerMove playerMove;
     [SerializeField] FPSAnimatorChange fpsAnimatorChange;
+    [SerializeField] Rig FPSRig;
+    [SerializeField] float rigWeight;
     [Header("TPS")]
     [SerializeField] TPSClick tPSClick;
     [SerializeField] TPSMove tPSMove;
@@ -88,6 +91,7 @@ public class CameraState : MonoBehaviour
         tPSMove.enabled = false;
         fpsAnimatorChange.enabled = true;
         tpsAnimatorChange.enabled = false;
+        FPSRig.weight = rigWeight;
 
         Debug.Log("FPS");
         fpsc.enabled = true;
@@ -110,6 +114,7 @@ public class CameraState : MonoBehaviour
         tPSMove.enabled = true;
         fpsAnimatorChange.enabled = false;
         tpsAnimatorChange.enabled = true;
+        FPSRig.weight = 0f;
 
 
         Debug.Log("TVC");

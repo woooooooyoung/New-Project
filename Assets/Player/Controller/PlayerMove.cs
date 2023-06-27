@@ -11,10 +11,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float runSpeed;
     [SerializeField] float delayTime;
     [SerializeField] float jumpSpeed;
+    [SerializeField] float upperBodyMovement;
 
     [SerializeField] float walkStepRange;
     [SerializeField] float runStepRange;
 
+    private Transform spine;
     private float moveSpeed;
     private float ySpeed = 0;
     private CharacterController characterController;
@@ -81,6 +83,7 @@ public class PlayerMove : MonoBehaviour
                 break;
         }
     }
+
     private void WalkUpate()
     {
         Debug.Log("Walk");

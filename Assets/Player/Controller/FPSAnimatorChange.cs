@@ -21,6 +21,9 @@ public class FPSAnimatorChange : MonoBehaviour
     }
     private void Update()
     {
+        Aiming();
+        RifleFire();
+
         switch (weaponChange)
         {
             case WeaponChange.Idle:
@@ -41,8 +44,41 @@ public class FPSAnimatorChange : MonoBehaviour
             case WeaponChange.SwordandShield:
                 SwordandShieldChange();
                 break;
-
         }
+        TPSAnimatorLayerOff();
+    }
+    private void TPSAnimatorLayerOff()
+    {
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 0);
+    }
+    private void Aiming()
+    {
+        if (Rifle.activeSelf)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                animator.SetLayerWeight(6, 1);
+            }
+            else
+            {
+                animator.SetLayerWeight(6, 0);
+            }
+        }
+    }
+    private void RifleFire()
+    {
+        //if (Rifle.activeSelf)
+        //{
+        //    if (Input.GetMouseButton(0))
+        //    {
+        //        animator.Play("FPS Rifle Fire");
+        //    }
+        //    if (Input.GetMouseButtonUp(0))
+        //    {
+        //        animator.SetTrigger("FPSRifleFireStop");
+        //    }
+        //}
     }
     private void IdleChange()
     {
@@ -247,19 +283,6 @@ public class FPSAnimatorChange : MonoBehaviour
         else if (Input.GetKey(KeyCode.Keypad5))
         {
             weaponChange = WeaponChange.SwordandShield;
-        }
-    }
-
-    private void Aiming()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            animator.SetLayerWeight(6, 1);
-            animator.SetLayerWeight(2, 1);
-        }
-        else
-        {
-            animator.SetLayerWeight(6, 0);
         }
     }
     private void IdleLayer()

@@ -1,0 +1,65 @@
+{
+    "name": "Player 1",
+    "maps": [
+        {
+            "name": "FPSCM",
+            "id": "54affa14-ba17-44b2-8e5f-3b63abfc289d",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "f6130c06-7fa1-478f-bb7c-401e76a41dc9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Change",
+                    "type": "Value",
+                    "id": "66c71f08-e369-4278-a1d9-737a757e77dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9f0e345f-396f-435b-9242-9f753d847612",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8142155e-1619-412d-a8d9-de27d3aff90f",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "534da499-23c5-4c54-b96e-333e134f754d",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

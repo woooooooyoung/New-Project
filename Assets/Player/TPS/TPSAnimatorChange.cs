@@ -45,6 +45,30 @@ public class TPSAnimatorChange : MonoBehaviour
                 break;
 
         }
+        FPSAnimatorLayerOff();
+        RifleFire();
+    }
+    private void FPSAnimatorLayerOff()
+    {
+        animator.SetLayerWeight(1, 0);
+        animator.SetLayerWeight(2, 0);
+        animator.SetLayerWeight(3, 0);
+        animator.SetLayerWeight(4, 0);
+        animator.SetLayerWeight(5, 0);
+    }
+    private void RifleFire()
+    {
+        if (Rifle.activeSelf)
+        { 
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButton(0))
+            {
+                animator.Play("TPS Rifle Fire");
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetMouseButtonUp(0))
+            {
+                animator.SetTrigger("33");
+            }
+        }
     }
     private void IdleChange()
     {
@@ -117,7 +141,6 @@ public class TPSAnimatorChange : MonoBehaviour
     private void RifleChange()
     {
         RifleLayer();
-        Aiming();
 
         Debug.Log("รั");
         GreatSword.SetActive(false);
@@ -149,6 +172,8 @@ public class TPSAnimatorChange : MonoBehaviour
             weaponChange = WeaponChange.SwordandShield;
         }
     }
+
+
     private void SwordChange()
     {
         SwordLayer();
@@ -251,66 +276,61 @@ public class TPSAnimatorChange : MonoBehaviour
             weaponChange = WeaponChange.SwordandShield;
         }
     }
-
-    private void Aiming()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            animator.SetLayerWeight(6, 1);
-        }
-        else
-        {
-            animator.SetLayerWeight(6, 0);
-        }
-    }
     private void IdleLayer()
     {
-        animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 0);
-        animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 0);
+        animator.SetLayerWeight(9, 0);
+        animator.SetLayerWeight(10, 0);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 0);
     }
     private void GreatSwordLayer()
     {
-        animator.SetLayerWeight(1, 1);
-        animator.SetLayerWeight(2, 0);
-        animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        animator.SetLayerWeight(7, 1);
+        animator.SetLayerWeight(8, 0);
+        animator.SetLayerWeight(9, 0);
+        animator.SetLayerWeight(10, 0);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 0);
     }
 
     private void RifleLayer()
     {
-        animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 1);
-        animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 1);
+        animator.SetLayerWeight(9, 0);
+        animator.SetLayerWeight(10, 0);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 0);
     }
     private void SwordLayer()
     {
-        animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 0);
-        animator.SetLayerWeight(3, 1);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 0);
+        animator.SetLayerWeight(9, 1);
+        animator.SetLayerWeight(10, 0);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 0);
     }
     private void ShieldLayer()
     {
-        animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 0);
-        animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 1);
-        animator.SetLayerWeight(5, 0);
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 0);
+        animator.SetLayerWeight(9, 0);
+        animator.SetLayerWeight(10, 1);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 0);
     }
     private void SwordandShieldLayer()
     {
-        animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 0);
-        animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 1);
+        animator.SetLayerWeight(7, 0);
+        animator.SetLayerWeight(8, 0);
+        animator.SetLayerWeight(9, 0);
+        animator.SetLayerWeight(10, 0);
+        animator.SetLayerWeight(11, 0);
+        animator.SetLayerWeight(12, 1);
     }
 }
 

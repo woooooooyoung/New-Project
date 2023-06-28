@@ -12,9 +12,9 @@ public class Rifle : MonoBehaviour
     [SerializeField] float range;           // 사정거리
     [SerializeField] float fireRate;        // 연사속도
     [SerializeField] float damage;          // 데미지
-
+    
     [SerializeField] float fireTimer;       // 총탄과 총탄 사이의 발사 간격 설정
-
+    
     [SerializeField] Transform shootPoint;  // 총탄이 실제 발사되는 지점
 
     private Animator animator;
@@ -22,15 +22,19 @@ public class Rifle : MonoBehaviour
     private enum RifleState { FPSRifle, TPSRifle }
     RifleState rifleState = RifleState.FPSRifle;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         currentBullets = bulletsPerMag;
-        //FPSRifle();
+        FPSRifle();
     }
     private void Update()
     {
-        
-        if(Input.GetMouseButton(0))
+        ReLoad();
+        if (Input.GetMouseButton(0))
         {
             if (currentBullets > 0)
             {
@@ -65,30 +69,43 @@ public class Rifle : MonoBehaviour
         //        break;
         //}
     }
-
-    //private void FPSRifle()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.V))
-    //    {
-    //        rifleState = RifleState.FPSRifle;
-    //    }
-    //}
-    //private void FPSRifleFire()
-    //{
-    //    if (Input.GetMouseButton(0))
-    //    {
-    //        animator.Play("FPSRifleFireStop");
-    //    }
-    //    //else if ()
-    //    //{ 
-    //    //}
-    //}
-    //private void TPSRifle()
-    //{
-    //
-    //    if (Input.GetKeyDown(KeyCode.V))
-    //    {
-    //        rifleState = RifleState.TPSRifle;
-    //    }
-    //}
+    private void ReLoad()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("재장전");
+            animator.Play("ReLoading");
+            //if(currentBullets < bulletsPerMag)
+            //{
+            //    animator.Play("ReLoading");
+            //}
+            //if (currentBullets == bulletsPerMag)
+            //{
+            //    return;
+            //}
+        }
+    }
+    private void FPSRifle()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            rifleState = RifleState.FPSRifle;
+        }
+    }
+    // private void FPSRifleFire()
+    // {
+    //     if (Input.GetMouseButton(0))
+    //     {
+    //         animator.Play("FPSRifleFireStop");
+    //     }
+    // 
+    // }
+    // private void TPSRifle()
+    // {
+    // 
+    //     if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         rifleState = RifleState.TPSRifle;
+    //     }
+    // }
 }   

@@ -42,7 +42,7 @@ public class PlayerInformation : MonoBehaviour
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(attackDamage);
+                //enemy.TakeDamage(attackDamage);
             }
         }
     }

@@ -21,6 +21,10 @@ public class TPSAnimatorChange : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        FPSAnimatorLayerOff();
+    }
     private void Update()
     {
         switch (weaponChange)
@@ -45,7 +49,6 @@ public class TPSAnimatorChange : MonoBehaviour
                 break;
 
         }
-        FPSAnimatorLayerOff();
         RifleFire();
     }
     private void FPSAnimatorLayerOff()
@@ -298,8 +301,8 @@ public class TPSAnimatorChange : MonoBehaviour
     private void RifleLayer()
     {
 
-        animator.SetLayerWeight(7, 0);
-        animator.SetLayerWeight(8, 1);
+        animator.SetLayerWeight(1, 1);
+        animator.SetLayerWeight(2, 1);
         animator.SetLayerWeight(9, 0);
         animator.SetLayerWeight(10, 0);
         animator.SetLayerWeight(11, 0);

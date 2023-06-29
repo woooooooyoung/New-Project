@@ -24,7 +24,11 @@ public class TestEnemy2 : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< HEAD
+        // 초기상태-
+=======
         // 초기상태
+>>>>>>> aa00579 (1212121212)
         currentState = EnemyState.Idle;
         // 시작
         StartCoroutine(StateMachine());

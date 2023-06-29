@@ -54926,8 +54926,13 @@ AnimationClip:
     m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
+<<<<<<< HEAD
+    m_LoopBlendPositionY: 1
+    m_LoopBlendPositionXZ: 1
+=======
     m_LoopBlendPositionY: 0
     m_LoopBlendPositionXZ: 0
+>>>>>>> aa00579 (1212121212)
     m_KeepOriginalOrientation: 0
     m_KeepOriginalPositionY: 1
     m_KeepOriginalPositionXZ: 0

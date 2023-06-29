@@ -3262,7 +3262,11 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
+<<<<<<< HEAD
+  m_Constraints: 126
+=======
   m_Constraints: 0
+>>>>>>> aa00579 (1212121212)
   m_CollisionDetection: 0
 --- !u!95 &1829594224
 Animator:
@@ -3407,6 +3411,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   curHealth: 10
+<<<<<<< HEAD
+  lostDistance: 3
+  target: {fileID: 0}
+  isChase: 0
+=======
   target: {fileID: 0}
   isChase: 0
 --- !u!54 &1874873272
@@ -3425,6 +3434,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+>>>>>>> aa00579 (1212121212)
 --- !u!1 &2038733761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3623,7 +3633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723334318811201978, guid: 218ff678a3736a149b4974a30ff13705, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: -8.23
+=======
       value: -3.1860006
+>>>>>>> aa00579 (1212121212)
       objectReference: {fileID: 0}
     - target: {fileID: 6723334318811201978, guid: 218ff678a3736a149b4974a30ff13705, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3631,7 +3645,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723334318811201978, guid: 218ff678a3736a149b4974a30ff13705, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD
+      value: -0.77
+=======
       value: 3.3590446
+>>>>>>> aa00579 (1212121212)
       objectReference: {fileID: 0}
     - target: {fileID: 6723334318811201978, guid: 218ff678a3736a149b4974a30ff13705, type: 3}
       propertyPath: m_LocalRotation.w

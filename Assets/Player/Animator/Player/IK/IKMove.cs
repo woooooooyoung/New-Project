@@ -27,7 +27,7 @@ public class IKMove : MonoBehaviour
             // 저장 -> 생성
             if (Physics.Raycast(ray, out hit, DistanceToGroung + 1f, layerMask))
             {
-                if (hit.transform.tag == "Walkable")
+                if (hit.transform.tag == "Ground")
                 {
                     Vector3 footPositon = hit.point;
                     footPositon.y += DistanceToGroung;

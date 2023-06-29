@@ -12,12 +12,13 @@ public class CameraState : MonoBehaviour
     [Header("GameObject")]
     [SerializeField] GameObject fps;
     [SerializeField] GameObject tvc;
+    [SerializeField] GameObject fPSAim;
     [Header("FPS")]
     [SerializeField] FPSCamera fpsc;
     [SerializeField] PlayerMove playerMove;
     [SerializeField] FPSAnimatorChange fpsAnimatorChange;
-    [SerializeField] Rig FPSRig;
-    [SerializeField] float rigWeight;
+    [SerializeField] Rig fPSRig;
+    [SerializeField] Rig fPSRig2;
     [Header("TPS")]
     [SerializeField] TPSClick tPSClick;
     [SerializeField] TPSMove tPSMove;
@@ -82,6 +83,7 @@ public class CameraState : MonoBehaviour
 
         fps.SetActive(true);
         tvc.SetActive(false);
+        fPSAim.SetActive(true);
 
         //tPSController.enabled = false;
         playerMove.enabled = true;
@@ -91,7 +93,7 @@ public class CameraState : MonoBehaviour
         tPSMove.enabled = false;
         fpsAnimatorChange.enabled = true;
         tpsAnimatorChange.enabled = false;
-        FPSRig.weight = rigWeight;
+        //FPSRig.weight = rigWeight;
 
         Debug.Log("FPS");
         fpsc.enabled = true;
@@ -105,6 +107,7 @@ public class CameraState : MonoBehaviour
 
         fps.SetActive(false);
         tvc.SetActive(true);
+        fPSAim.SetActive(false);
 
         //tPSController.enabled = true;
         playerMove.enabled = false;
@@ -114,7 +117,8 @@ public class CameraState : MonoBehaviour
         tPSMove.enabled = true;
         fpsAnimatorChange.enabled = false;
         tpsAnimatorChange.enabled = true;
-        FPSRig.weight = 0f;
+        fPSRig.weight = 0f;
+        fPSRig2.weight = 0f;
 
 
         Debug.Log("TVC");

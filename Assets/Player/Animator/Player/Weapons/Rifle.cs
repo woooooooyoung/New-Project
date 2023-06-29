@@ -5,19 +5,17 @@ using UnityEngine;
 public class Rifle : MonoBehaviour
 {
     [Header("Weapon Information")]
-    [SerializeField] GameObject rifle;
-    //public GameObject rifle = null;
-    //[SerializeField] string waponName;      //이름
-    //[SerializeField] int bulletsPerMag;     // 탄창 당 장탄 수
-    //[SerializeField] int bulletsTotal;      // 전체 가지고 있는 총알 수
-    //[SerializeField] int currentBullets;    // 현재 탄창에 남아있는 총탄 수
-    //[SerializeField] float range;           // 사정거리
-    //[SerializeField] float fireRate;        // 연사속도
-    //[SerializeField] float damage;          // 데미지
-    //
-    //[SerializeField] float fireTimer;       // 총탄과 총탄 사이의 발사 간격 설정
-    //
-    //[SerializeField] Transform shootPoint;  // 총탄이 실제 발사되는 지점
+    [SerializeField] string waponName;      //이름
+    [SerializeField] int bulletsPerMag;     // 탄창 당 장탄 수
+    [SerializeField] int bulletsTotal;      // 전체 가지고 있는 총알 수
+    [SerializeField] int currentBullets;    // 현재 탄창에 남아있는 총탄 수
+    [SerializeField] float range;           // 사정거리
+    [SerializeField] float fireRate;        // 연사속도
+    [SerializeField] float damage;          // 데미지
+    
+    [SerializeField] float fireTimer;       // 총탄과 총탄 사이의 발사 간격 설정
+    
+    [SerializeField] Transform shootPoint;  // 총탄이 실제 발사되는 지점
 
     private Animator animator;
 
@@ -30,38 +28,37 @@ public class Rifle : MonoBehaviour
     }
     private void Start()
     {
-        //currentBullets = bulletsPerMag;
-        //FPSRifle();
+        currentBullets = bulletsPerMag;
+        FPSRifle();
     }
     private void Update()
     {
-        OnFire();
-        
-        //if(Input.GetMouseButton(0))
-        //{
-        //    if (currentBullets > 0)
-        //    {
-        //        Fire();
-        //    }
-        //    if (fireTimer < fireRate)
-        //    {
-        //        fireTimer += Time.deltaTime;
-        //    }
-        //}
+        ReLoad();
+        if (Input.GetMouseButton(0))
+        {
+            if (currentBullets > 0)
+            {
+                Fire();
+            }
+            if (fireTimer < fireRate)
+            {
+                fireTimer += Time.deltaTime;
+            }
+        }
     }
     private void Fire()
     {
-        //if (fireTimer < fireRate)
-        //{
-        //    return;
-        //}
-        //RaycastHit hit;
-        //if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, range))
-        //{
-        //    Debug.LogWarning(hit.transform.name);
-        //}
-        //currentBullets--;
-        //fireTimer = 0.0f;
+        if (fireTimer < fireRate)
+        {
+            return;
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, range))
+        {
+            Debug.LogWarning(hit.transform.name);
+        }
+        currentBullets--;
+        fireTimer = 0.0f;
         //switch (rifleState)
         //{
         //    case RifleState.FPSRifle:
@@ -72,46 +69,43 @@ public class Rifle : MonoBehaviour
         //        break;
         //}
     }
-    private void OnFire()
+    private void ReLoad()
     {
-        if (rifle.activeSelf)
+        if(Input.GetKeyDown(KeyCode.R))
         {
-
-            if (Input.GetMouseButton(0))
-            {
-                
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                Debug.Log("중지");
-                animator.SetBool("Fire",false);
-
-            }
+            Debug.Log("재장전");
+            animator.Play("ReLoading");
+            //if(currentBullets < bulletsPerMag)
+            //{
+            //    animator.Play("ReLoading");
+            //}
+            //if (currentBullets == bulletsPerMag)
+            //{
+            //    return;
+            //}
         }
     }
-    //private void FPSRifle()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.V))
-    //    {
-    //        rifleState = RifleState.FPSRifle;
-    //    }
-    //}
-    //private void FPSRifleFire()
-    //{
-    //    if (Input.GetMouseButton(0))
-    //    {
-    //        animator.Play("FPSRifleFireStop");
-    //    }
-    //    //else if ()
-    //    //{ 
-    //    //}
-    //}
-    //private void TPSRifle()
-    //{
-    //
-    //    if (Input.GetKeyDown(KeyCode.V))
-    //    {
-    //        rifleState = RifleState.TPSRifle;
-    //    }
-    //}
+    private void FPSRifle()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            rifleState = RifleState.FPSRifle;
+        }
+    }
+    // private void FPSRifleFire()
+    // {
+    //     if (Input.GetMouseButton(0))
+    //     {
+    //         animator.Play("FPSRifleFireStop");
+    //     }
+    // 
+    // }
+    // private void TPSRifle()
+    // {
+    // 
+    //     if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         rifleState = RifleState.TPSRifle;
+    //     }
+    // }
 }   

@@ -23,6 +23,8 @@ public class FPSAnimatorChange : MonoBehaviour
     {
         Aiming();
         RifleFire();
+        OnFire();
+        ReLoad();
 
         switch (weaponChange)
         {
@@ -52,17 +54,43 @@ public class FPSAnimatorChange : MonoBehaviour
         animator.SetLayerWeight(7, 0);
         animator.SetLayerWeight(8, 0);
     }
+    private void OnFire()
+    {
+        if (Rifle.activeSelf)
+        {
+
+            if (Input.GetMouseButton(0))
+            {
+                animator.SetInteger("Fire", 2);
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                animator.SetInteger("Fire", 0);
+            }
+        }
+    }
+    private void ReLoad()
+    {
+        if (Rifle.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("재장전");
+                animator.Play("ReLoading");
+            }
+        }
+    }
     private void Aiming()
     {
         if (Rifle.activeSelf)
         {
             if (Input.GetMouseButton(1))
             {
-                animator.SetLayerWeight(6, 1);
+                animator.SetLayerWeight(3, 1);
             }
             else
             {
-                animator.SetLayerWeight(6, 0);
+                animator.SetLayerWeight(3, 0);
             }
         }
     }
@@ -86,40 +114,6 @@ public class FPSAnimatorChange : MonoBehaviour
 
         Debug.Log("기본");
         GreatSword.SetActive(false);
-        Rifle.SetActive(false);
-        Sword.SetActive(false);
-        Shield.SetActive(false);
-        if (Input.GetKey(KeyCode.Keypad0))
-        {
-            weaponChange = WeaponChange.Idle;
-        }
-        else if (Input.GetKey(KeyCode.Keypad1))
-        {
-            weaponChange = WeaponChange.GreatSword;
-        }
-        else if (Input.GetKey(KeyCode.Keypad2))
-        {
-            weaponChange = WeaponChange.Rifle;
-        }
-        else if (Input.GetKey(KeyCode.Keypad3))
-        {
-            weaponChange = WeaponChange.Sword;
-        }
-        else if (Input.GetKey(KeyCode.Keypad4))
-        {
-            weaponChange = WeaponChange.Shield;
-        }
-        else if (Input.GetKey(KeyCode.Keypad5))
-        {
-            weaponChange = WeaponChange.SwordandShield;
-        }
-    }
-    private void GreatSwordChange()
-    {
-        GreatSwordLayer();
-
-        Debug.Log("대검");
-        GreatSword.SetActive(true);
         Rifle.SetActive(false);
         Sword.SetActive(false);
         Shield.SetActive(false);
@@ -183,6 +177,41 @@ public class FPSAnimatorChange : MonoBehaviour
             weaponChange = WeaponChange.SwordandShield;
         }
     }
+    private void GreatSwordChange()
+    {
+        GreatSwordLayer();
+
+        Debug.Log("대검");
+        GreatSword.SetActive(true);
+        Rifle.SetActive(false);
+        Sword.SetActive(false);
+        Shield.SetActive(false);
+        if (Input.GetKey(KeyCode.Keypad0))
+        {
+            weaponChange = WeaponChange.Idle;
+        }
+        else if (Input.GetKey(KeyCode.Keypad1))
+        {
+            weaponChange = WeaponChange.GreatSword;
+        }
+        else if (Input.GetKey(KeyCode.Keypad2))
+        {
+            weaponChange = WeaponChange.Rifle;
+        }
+        else if (Input.GetKey(KeyCode.Keypad3))
+        {
+            weaponChange = WeaponChange.Sword;
+        }
+        else if (Input.GetKey(KeyCode.Keypad4))
+        {
+            weaponChange = WeaponChange.Shield;
+        }
+        else if (Input.GetKey(KeyCode.Keypad5))
+        {
+            weaponChange = WeaponChange.SwordandShield;
+        }
+    }
+
     private void SwordChange()
     {
         SwordLayer();
@@ -293,19 +322,18 @@ public class FPSAnimatorChange : MonoBehaviour
         animator.SetLayerWeight(4, 0);
         animator.SetLayerWeight(5, 0);
     }
-    private void GreatSwordLayer()
+    private void RifleLayer()
     {
         animator.SetLayerWeight(1, 1);
-        animator.SetLayerWeight(2, 0);
+        animator.SetLayerWeight(2, 1);
         animator.SetLayerWeight(3, 0);
         animator.SetLayerWeight(4, 0);
         animator.SetLayerWeight(5, 0);
     }
-
-    private void RifleLayer()
+    private void GreatSwordLayer()
     {
         animator.SetLayerWeight(1, 0);
-        animator.SetLayerWeight(2, 1);
+        animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 0);
         animator.SetLayerWeight(4, 0);
         animator.SetLayerWeight(5, 0);

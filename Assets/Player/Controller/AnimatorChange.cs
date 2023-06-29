@@ -5,6 +5,8 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class AnimatorChange : MonoBehaviour
 {
+    // ¾È¾¸
+
     [SerializeField] GameObject GreatSword;
     [SerializeField] GameObject Rifle;
     [SerializeField] GameObject Sword;
@@ -183,7 +185,7 @@ public class AnimatorChange : MonoBehaviour
         if (Rifle.activeSelf)
         {
             animator.SetBool("Rifle", true);
-            animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(1, 1);
             animator.SetLayerWeight(2, 1);
             animator.SetLayerWeight(3, 0);
             animator.SetLayerWeight(4, 0);
@@ -192,6 +194,7 @@ public class AnimatorChange : MonoBehaviour
         else
         {
             animator.SetBool("Rifle", false);
+            animator.SetLayerWeight(1, 0);
             animator.SetLayerWeight(2, 0);
         }
     }

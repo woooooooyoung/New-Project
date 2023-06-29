@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class IKHand : MonoBehaviour
 {
-    [SerializeField] Transform tergat;
-    
     private Animator animator;
 
     public Transform leftHand;
+
     public Transform righftHand;
 
+    [Range(0,1f)]
+    public float l_Weight;
+    [Range(0, 1f)]
+    public float r_Weight;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -21,20 +24,20 @@ public class IKHand : MonoBehaviour
         // 위치
         //왼손
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
-        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, l_Weight);
 
         //오른손
         animator.SetIKPosition(AvatarIKGoal.RightHand, righftHand.position);
-        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, r_Weight);
 
         // 회전
         //왼손
         animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
-        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, l_Weight);
 
 
         //오른손
         animator.SetIKRotation(AvatarIKGoal.RightHand, righftHand.rotation);
-        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, r_Weight);
     }
 }

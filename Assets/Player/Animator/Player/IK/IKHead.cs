@@ -7,7 +7,8 @@ public class IKHead : MonoBehaviour
     [SerializeField] Transform target;
 
     private Animator animator;
-    private float weight = 1.0f;
+    [Range(0f, 1f)]
+    public float h_Weight;
 
     private void Awake()
     {
@@ -15,8 +16,8 @@ public class IKHead : MonoBehaviour
     }
     private void OnAnimatorIK(int layerIndex)
     {
-        animator.SetLookAtPosition(target.position);
-        animator.SetLookAtWeight(weight); // 성능 가중치
+        animator.SetLookAtPosition(target.position); // 시선
+        animator.SetLookAtWeight(h_Weight); // 성능 가중치
     }
 
 }

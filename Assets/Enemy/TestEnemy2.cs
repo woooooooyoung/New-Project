@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class TestEnemy2 : MonoBehaviour
 {
+    public bool deBug;
+
     public int maxHealth;
     public int curHealth;
     public float lostDistance;
     public Transform target;
     public bool isChase;
+    public int hp;
 
     Material mat;
     Animator animator;
@@ -24,25 +28,98 @@ public class TestEnemy2 : MonoBehaviour
 
     private void Start()
     {
-<<<<<<< HEAD
-        // 초기상태-
-=======
-        // 초기상태
->>>>>>> aa00579 (1212121212)
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         currentState = EnemyState.Idle;
         // 시작
         StartCoroutine(StateMachine());
     }
+    private void Update()
+    {
+        if (target == null)
+        {
+            return;
+        }
+        else
+        {
+            agent.SetDestination(target.position);
+        }
+    }
+    private void ChangeState(EnemyState nextState)
+    {
+        currentState = nextState;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name != "Player") // Player이라는 이름이 콜라이더의 트리거 안에 없음
+        {
+            return;
+        }
+        else
+        {
+            target = other.transform;
+            agent.SetDestination(target.position); // Player를 따라감
+        }
+
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name == "Player")
+        {
+            
+        }
+    }
     private IEnumerator StateMachine()
-    { yield break; }
+    {
+        
+        while (hp > 0)
+        {
+            yield return StartCoroutine(currentState.ToString());
+        }
+    }
     private IEnumerable Idle()
-    { yield break; }
+    {
+        target = null;
+        
+        
+        
+        yield break;
+    }
     private IEnumerable Chase()
-    { yield break; }
+    {
+        // 목표까지의 남은 거리가 멈추는 지점보다 작거나 같으면
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            // StateMachine 을 공격으로 변경
+            //ChangeState(State.ATTACK);
+        }
+        // 목표와의 거리가 멀어진 경우
+        else if (agent.remainingDistance > lostDistance)
+        {
+            target = null;
+            agent.SetDestination(transform.position);
+            yield return null;
+            // StateMachine 을 대기로 변경
+            ChangeState(EnemyState.Idle);
+        }
+        yield break;
+    }
     private IEnumerable Attack()
     { yield break; }
     private IEnumerable Die()
     { yield break; }
+    private void OnDrawGizmosSelected()
+    {
+        if (!deBug)
+            return;
+
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, lostDistance);
+    }
+}
 
 
 
@@ -176,7 +253,7 @@ public class TestEnemy2 : MonoBehaviour
         enamy = Enamy.Chase;
         // ChangeState(Enemy.Chase);
     }*/
-    *//*IEnumerator OnDamage(Vector3 reactVac, bool isGround)
+/*    *//*IEnumerator OnDamage(Vector3 reactVac, bool isGround)
     {
         mat.color = Color.red;
         yield return new WaitForSeconds(0.1f);
@@ -211,4 +288,4 @@ public class TestEnemy2 : MonoBehaviour
             Destroy(gameObject, 4);
         }
     }*/
-}
+

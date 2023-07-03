@@ -28,6 +28,10 @@ public class Mamo : MonoBehaviour
      * yield break                              : return과 같다.
      * 
      * 
+     * <objectPool>
+     * Pop     : 객체 풀에서 오브젝트 가져오기
+     * Push    : 객체를 반환하여 객체 풀에 저장
+     * Release : 객체를 객체 풀로 반환하여 재활용 가능하도록 설정
      * 
      */
 }

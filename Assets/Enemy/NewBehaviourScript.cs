@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -19,16 +20,23 @@ public class NewBehaviourScript : MonoBehaviour
     public int currentHp;
 
     public bool onDie;
+    public bool onAttack;
+    public bool offAttack;
 
     public Transform target;
-    public Transform currentStart;
-    public GameObject attackPoinrt;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer1;
+
+    //public Transform currentStart;
+    //public GameObject attackPoinrt;
     private float ySpeed = 0;
     private float jumpSpeed;
+    public float ground;
     NavMeshAgent agent;
     Animator animator;
     CharacterController characterController;
     Vector3 moveDir;
+
     
     
     private enum EnemyState { Idle, Chase, Attack, Die }
@@ -37,13 +45,12 @@ public class NewBehaviourScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        characterController = GetComponent<CharacterController>();
         currentHp = maxHp;
-        //currentStart = transform;
-        //animator.ResetTrigger("doDie");
     }
     private void Update()
     {
-        
+        Ground();
         switch (enemyState)
         {
             case EnemyState.Idle: // 가만히 있다
@@ -60,27 +67,88 @@ public class NewBehaviourScript : MonoBehaviour
                 break;
         }
     }
+    /**********************************************************************
+     * <한번만 충돌이 필요할떄 쓸것>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player")
+        if (other.name == "Player" )
         {
             print("ㄱㄱ");
             target = other.transform;
             agent.SetDestination(target.position);
+    
+            float ToPlayer = Vector3.Distance(transform.position, other.transform.position);
+            
+            if (ToPlayer <= attackRang)
+            {
+                animator.SetTrigger("isAttack1");
+                Debug.Log("공격");
+                enemyState = EnemyState.Attack;
+            }
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
         
+    }
+    **********************************************************************/
+    public void OnTriggerStay(Collider other)
+    {
+
         if (other.name == "Player")
         {
-            print("ㅌㅌ");
-            target = null;
-            
+            if (currentHp > 0)
+            {
+                target = other.transform;
+                agent.SetDestination(target.position);
+                float ToPlayer = Vector3.Distance(transform.position, other.transform.position);
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+                if ( target == null)
+                {
+                    enemyState = EnemyState.Idle;
+                }
+                else if (target != null && ToPlayer <= attackRang) // 타겟이 null이 아니거나 플레이가 attack와의 거리가 같거나 작을 때
+                {
+                    if (ToPlayer <= attackRang)
+                    {
+                        Debug.Log("공격");
+                        enemyState = EnemyState.Attack;
+                    }
+                    else if (stateInfo.IsName("Sword And Shield Death") && stateInfo.normalizedTime > 1f && ToPlayer <= attackRang)
+                    {
+                        animator.SetTrigger("doIdle");
+                        animator.SetTrigger("isAttack1");
+                        animator.SetTrigger("Walkgo");
+                        enemyState = EnemyState.Attack;
+                    }
+                }
+                else if (target != null && ToPlayer > attackRang) // 타겟이 null이 아니거나 플레이가 attack와의 거리보다 클 때
+                {
+                    if (stateInfo.IsName("Sword And Shield Slash (1)") && stateInfo.normalizedTime > 1f) // 공격 중 안끊기게 하기 위해 넣음
+                    {                                   
+                        Debug.Log("범위를 벗어남");
+                        enemyState = EnemyState.Chase;
+                    }
+                }
+            }
+            else
+            {
+                
+                enemyState = EnemyState.Die;
+            }
+        }
+    }
+    private void Ground()
+    {
+        if (!characterController.isGrounded)
+        {
+            // 땅 체크
+            if (Physics.Raycast(transform.position, Vector3.down, ground))
+            {
+                characterController.Move(Vector3.down * ground); // 아래로 이동
+            }
         }
     }
     private void Idle()
     {
+        SkinON();
         Debug.Log("Idle");
         animator.SetBool("isWalk", false);
         animator.SetBool("isAttack", false);
@@ -89,15 +157,15 @@ public class NewBehaviourScript : MonoBehaviour
         {
             enemyState = EnemyState.Chase;
         }
-        if (currentHp <= 0)
+        if (currentHp == 0)
         {
             animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
         }
-
     }
     private void Chase()
     {
+        SkinON();
         Debug.Log("Chase");
         animator.SetBool("isWalk", true);
         animator.SetBool("isAttack", false);
@@ -105,62 +173,93 @@ public class NewBehaviourScript : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
-        else if (target == null)
+        if (target == null)
         {
             enemyState = EnemyState.Idle;
         }
-        if (agent.remainingDistance <= attackRang)
+        if (agent.remainingDistance > lostDistance)
         {
-            enemyState = EnemyState.Attack;
+            target = null;
+            enemyState = EnemyState.Idle;
         }
-        if (currentHp <= 0)
+        if (currentHp == 0)
         {
             animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
         }
-
     }
     private void Attack()
     {
+        SkinON();
         Debug.Log("Attack");
         animator.SetBool("isAttack", true);
-        animator.SetBool("isWalk", false);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 애니메이션 상태 체크
         if (target == null)
         {
-            enemyState= EnemyState.Idle;
+            enemyState = EnemyState.Idle;
         }
-        if (currentHp <= 0)
+        if (currentHp == 0)
         {
             animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
+            
+        }
+        if (stateInfo.IsName("Sword And Shield Slash (1)") && stateInfo.normalizedTime > 1f) // Sword And Shield Slash (1) 애니메이션이 1보다 크면 실행
+        {
+            animator.SetBool("isAttack", false);
+            Debug.Log("끝");
+            if (agent.remainingDistance > attackRang)
+            {
+               enemyState = EnemyState.Chase;
+            }
+            if (currentHp == 0)
+            {
+                animator.SetTrigger("doDie");
+                enemyState = EnemyState.Die;
+            }
+        }
+        if (stateInfo.IsName("Sword And Shield Idle"))
+        {
+            animator.SetBool("isWalk", true);
         }
     }
     private void Die()
     {
         Debug.Log("die");
-        //Invoke("MaxHP", 9);
-        //Invoke("ObjOFF", 8);
-        //Invoke("ObjON", 10);
-        if ( currentHp == maxHp)
+        animator.SetBool("isAttack", false);
+        animator.SetBool("isWalk", false);
+        
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Sword And Shield Death") && stateInfo.normalizedTime > 1f)
         {
-            //animator.ResetTrigger("doDie");
+            Debug.Log("die");
+
+        }
+        if (currentHp == maxHp)
+        {
+            animator.Play("Sword And Shield Idle");
             enemyState = EnemyState.Idle;
         }
+        
+    }
+    private void OnAttack()
+    {
+        animator.SetTrigger("isAttack1");
+    }
+    private void SkinON()
+    {
+        skinnedMeshRenderer.enabled = true;
+        skinnedMeshRenderer1.enabled = true;
+    }
+    private void SkinOFF()
+    {
+        skinnedMeshRenderer.enabled = false;
+        skinnedMeshRenderer1.enabled = false;
     }
     private void MaxHP()
     {
         currentHp = maxHp;
     }
-    private void ObjOFF()
-    {
-        gameObject.SetActive(false);
-    }
-    private void ObjON()
-    {
-        gameObject.SetActive(true);
-    }
-
-
     private void OnDrawGizmosSelected()
     {
         if (!deBug)

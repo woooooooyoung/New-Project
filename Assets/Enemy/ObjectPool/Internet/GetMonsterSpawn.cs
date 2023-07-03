@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MS : MonoBehaviour
+public class GetMonsterSpawn : MonoBehaviour
 {
+    // 몬스터 스포너 돚거
     public GameObject monster;
     public static Poolable instance;
     public Queue<GameObject> m_queue = new Queue<GameObject>();

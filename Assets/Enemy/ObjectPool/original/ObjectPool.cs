@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
     private Stack<Poolable> objectPool = new Stack<Poolable>();
 
     private void Awake()
-    {
+    { 
         CreatePool();
     }
     private void CreatePool()

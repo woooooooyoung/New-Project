@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public float lostDistance;
+    public float attackRang;
+
+
     public bool deBug;
     public Transform target;
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.name == "Player")
-        {
-
-        }
+        
     }
     private void OnCollisionExit(Collision collision)
     {

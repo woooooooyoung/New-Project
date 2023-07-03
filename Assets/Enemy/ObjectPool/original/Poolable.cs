@@ -17,6 +17,5 @@ public class Poolable : MonoBehaviour
     IEnumerator ReleaseTimer()
     {
         yield return new WaitForSeconds(relaseTime);
-        pool.Release(this);
     }
 }

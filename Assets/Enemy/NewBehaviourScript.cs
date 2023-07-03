@@ -89,6 +89,7 @@ public class NewBehaviourScript : MonoBehaviour
         
     }
     **********************************************************************/
+    
     public void OnTriggerStay(Collider other)
     {
 
@@ -104,20 +105,14 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     enemyState = EnemyState.Idle;
                 }
+                else if (target == null && ToPlayer <= attackRang) // 타겟이 null이고 플레이어가 attack와의 거리가 같거나 작을 때
+                {
+                    enemyState = EnemyState.Idle;
+                }
                 else if (target != null && ToPlayer <= attackRang) // 타겟이 null이 아니거나 플레이가 attack와의 거리가 같거나 작을 때
                 {
-                    if (ToPlayer <= attackRang)
-                    {
-                        Debug.Log("공격");
-                        enemyState = EnemyState.Attack;
-                    }
-                    else if (stateInfo.IsName("Sword And Shield Death") && stateInfo.normalizedTime > 1f && ToPlayer <= attackRang)
-                    {
-                        animator.SetTrigger("doIdle");
-                        animator.SetTrigger("isAttack1");
-                        animator.SetTrigger("Walkgo");
-                        enemyState = EnemyState.Attack;
-                    }
+                    Debug.Log("공격");
+                    enemyState = EnemyState.Attack;
                 }
                 else if (target != null && ToPlayer > attackRang) // 타겟이 null이 아니거나 플레이가 attack와의 거리보다 클 때
                 {
@@ -130,11 +125,14 @@ public class NewBehaviourScript : MonoBehaviour
             }
             else
             {
-                
                 enemyState = EnemyState.Die;
             }
         }
     }
+
+
+
+
     private void Ground()
     {
         if (!characterController.isGrounded)
@@ -150,8 +148,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         SkinON();
         Debug.Log("Idle");
+
         animator.SetBool("isWalk", false);
         animator.SetBool("isAttack", false);
+        animator.SetBool("isDie", false);
         
         if (target != null)
         {
@@ -159,7 +159,6 @@ public class NewBehaviourScript : MonoBehaviour
         }
         if (currentHp == 0)
         {
-            animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
         }
     }
@@ -167,8 +166,11 @@ public class NewBehaviourScript : MonoBehaviour
     {
         SkinON();
         Debug.Log("Chase");
+
         animator.SetBool("isWalk", true);
         animator.SetBool("isAttack", false);
+        animator.SetBool("isDie", false);
+
         if (target != null)
         {
             agent.SetDestination(target.position);
@@ -184,7 +186,6 @@ public class NewBehaviourScript : MonoBehaviour
         }
         if (currentHp == 0)
         {
-            animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
         }
     }
@@ -192,15 +193,19 @@ public class NewBehaviourScript : MonoBehaviour
     {
         SkinON();
         Debug.Log("Attack");
+
         animator.SetBool("isAttack", true);
+        animator.SetBool("isDie", false);
+        
+
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 애니메이션 상태 체크
+
         if (target == null)
         {
             enemyState = EnemyState.Idle;
         }
         if (currentHp == 0)
         {
-            animator.SetTrigger("doDie");
             enemyState = EnemyState.Die;
             
         }
@@ -214,37 +219,38 @@ public class NewBehaviourScript : MonoBehaviour
             }
             if (currentHp == 0)
             {
-                animator.SetTrigger("doDie");
                 enemyState = EnemyState.Die;
             }
         }
-        if (stateInfo.IsName("Sword And Shield Idle"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Sword And Shield Slash (1)"))
         {
-            animator.SetBool("isWalk", true);
+            Debug.Log("공격상태가 아니므로 공격");
+            animator.Play("Sword And Shield Slash (1)");
         }
+
     }
     private void Die()
     {
         Debug.Log("die");
-        animator.SetBool("isAttack", false);
-        animator.SetBool("isWalk", false);
-        
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Sword And Shield Death") && stateInfo.normalizedTime > 1f)
-        {
-            Debug.Log("die");
+        animator.SetBool("isDie", true);
 
-        }
         if (currentHp == maxHp)
         {
-            animator.Play("Sword And Shield Idle");
-            enemyState = EnemyState.Idle;
+            animator.SetBool("isDie", false);
         }
-        
-    }
-    private void OnAttack()
-    {
-        animator.SetTrigger("isAttack1");
+
+        //AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        //if (stateInfo.IsName("Sword And Shield Death") && stateInfo.normalizedTime > 1f)
+        //{
+        //    Debug.Log("die");
+        //
+        //}
+        //if (currentHp == maxHp)
+        //{
+        //    animator.Play("Sword And Shield Idle");
+        //    enemyState = EnemyState.Idle;
+        //}
+
     }
     private void SkinON()
     {

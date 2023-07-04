@@ -11,6 +11,7 @@ public class GetMonsterSpawn : MonoBehaviour
     public float xPos;
     public float zPos;
     private Vector3 RandomVector;
+    private EnemyInformation enm;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class GetMonsterSpawn : MonoBehaviour
 
         m_queue.Enqueue(p_object);
         p_object.SetActive(false);
+        
     }
 
     public GameObject GetQueue()

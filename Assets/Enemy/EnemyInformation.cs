@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyInformation : MonoBehaviour
 {
     public bool deBug;
-
+    public static EnemyInformation instance;
 
     public float lostDistance;
 

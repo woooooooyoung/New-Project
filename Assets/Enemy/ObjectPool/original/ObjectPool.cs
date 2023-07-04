@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObjectPool : MonoBehaviour
+
 {
     [SerializeField] Poolable poolablePrefab;
 
-    [SerializeField] int poolSize;
-    [SerializeField] int maxSize;
+    [SerializeField] int poolSize; // 한번에 생성되는 갯수
+    [SerializeField] int maxSize;  // 객체에 담을수 있는 최대 Pool의 갯수
 
-    private Stack<Poolable> objectPool = new Stack<Poolable>();
+    private Stack<Poolable> stackPool = new Stack<Poolable>();   // Push, Pop
+    //private Queue<Poolable> stackPool = new Queue<Poolable>(); // Enqueue, Dequeue
+    //private List<Poolable> stackPool = new List<Poolable>();   // Add, Remove(n)
 
     private void Awake()
     { 
@@ -23,14 +27,18 @@ public class ObjectPool : MonoBehaviour
             poolable.gameObject.SetActive(false);
             poolable.transform.SetParent(transform);
             poolable.Pool = this;
-            objectPool.Push(poolable);
+            stackPool.Push(poolable);
+            //stackPool.Enqueue(poolable);
+            //stackPool.Add(poolable);
         }
     }
     public Poolable Get()
     {
-        if (objectPool.Count > 0)
+        if (stackPool.Count > 0)
         {
-            Poolable poolable = objectPool.Pop();
+            Poolable poolable = stackPool.Pop();
+            //Poolable poolable = stackPool.Dequeue();
+            //Poolable poolable = stackPool.Remove();
             poolable.gameObject.SetActive(true);
             poolable.transform.parent = null;
             return poolable;
@@ -44,15 +52,18 @@ public class ObjectPool : MonoBehaviour
     }
     public void Release(Poolable poolable)
     {
-        if (objectPool.Count < maxSize)
+        if (stackPool.Count < maxSize)
         {
             poolable.gameObject.SetActive(false);
             poolable.transform.SetParent(transform);
-            objectPool.Push(poolable);
+            stackPool.Push(poolable);
+            //stackPool.Enqueue(poolable);
+            //stackPool.Add(poolable);
         }
         else
         {
-            Destroy(poolable);
+            //Destroy(poolable); // O
+            Destroy(poolable.gameObject);
         }
     }
 }

@@ -69,16 +69,16 @@ public class MS1 : MonoBehaviour
         //Gizmos.color = Color.white;
         //Gizmos.DrawWireSphere(transform.position, attackRang);
     }
-    public override void Die()
-    {
-
-        gameObject.SetActive(false);
-        //hpBar.SetActive(false);
-
-        GetComponent<EnemyInformation>().enemies.Clear();
-        GetComponent<EnemyInformation>().detected.Clear();
-
-        MS1.instance.InsertQueue(gameObject);
-    }
+    //public override void Die()
+    //{
+    //
+    //    gameObject.SetActive(false);
+    //    //hpBar.SetActive(false);
+    //
+    //    GetComponent<EnemyInformation>().enemies.Clear();
+    //    GetComponent<EnemyInformation>().detected.Clear();
+    //
+    //    MS1.instance.InsertQueue(gameObject);
+    //}
 
 }

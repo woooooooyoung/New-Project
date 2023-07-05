@@ -13,8 +13,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float jumpSpeed;
     [SerializeField] float upperBodyMovement;
 
-    [SerializeField] float walkStepRange;
-    [SerializeField] float runStepRange;
+    //[SerializeField] float walkStepRange;
+    //[SerializeField] float runStepRange;
 
     private Transform spine;
     private float moveSpeed;
@@ -87,7 +87,6 @@ public class PlayerMove : MonoBehaviour
     private void WalkUpate()
     {
         Debug.Log("Walk");
-        Debug.Log(moveDir);
         if (moveDir.magnitude == 0)
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 0, 0.5f);
@@ -155,16 +154,16 @@ public class PlayerMove : MonoBehaviour
         RaycastHit hit;
         return Physics.SphereCast(transform.position + Vector3.up * 1, 0.5f, Vector3.down, out hit, 0.6f);
     }
-    private void OnDrawGizmosSelected()
-    {
-        if (!deBugs)
-            return;
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, walkStepRange);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, runStepRange);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (!deBugs)
+    //        return;
+    //
+    //    Gizmos.color = Color.cyan;
+    //    Gizmos.DrawWireSphere(transform.position, walkStepRange);
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(transform.position, runStepRange);
+    //}
     private void Jump()
     {
         ySpeed += Physics.gravity.y * Time.deltaTime;

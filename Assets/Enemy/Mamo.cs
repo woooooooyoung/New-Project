@@ -5,7 +5,14 @@ using UnityEngine;
 public class Mamo : MonoBehaviour
 {
 
-    /* <NavMeshAgent>
+    /* 
+     * <매서드와 함수의 차이>
+     * 함수와 메서드의 차이점은 호출 방식에 따라 다릅니다. 
+     * 함수를 호출하는 객체가 있는 경우 메서드라고 말하며, 
+     * 함수를 호출하는 객체가 없는 경우 함수라고 말합니다
+     * 
+     * 
+     * <NavMeshAgent>
      * SetDestination           : 도달할 목표지정
      * remainingDistance        : NavMeshAgent에 지정된 목적지까지 남은 거리를 반환.(처음엔 정지 상태이기 때문에 항상 0을 반환한다. 따라서 적 캐릭터가 이동 중이라는 조건도 함께 판단해야 한다.)
      * velocity                 : 속도를 의미함. 이 속성의 크기로 이동 여부를 판단한다.
@@ -87,6 +94,31 @@ public class Mamo : MonoBehaviour
      *   }
      * 위의 코드에서 normalizedTime = 1의 뜻은 현재 진행되고 있는 애니메이션이 모두 진행되었다는 것이고,  normalizedTime = 0은 애니메이션이 아직 시작하지 않았다는 것을 뜻합니다.
      * 이렇게 GetCurrentAnimatorStateInfo를 통해서 현재 진행되고있는 애니메이션의 정보를 가져올 수 있습니다.
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * IPointerEnterHandler - OnPointerEnter - 포인터가 오브젝트에 들어갈 때 호출됩니다.
+     * IPointerExitHandler - OnPointerExit - 포인터가 오브젝트에서 나올 때 호출됩니다.
+     * IPointerDownHandler - OnPointerDown - 포인터가 오브젝트 위에서 눌렸을 때 호출됩니다.
+     * IPointerUpHandler - OnPointerUp - 포인터를 뗄 때 호출됩니다(눌려 있던 오브젝트에서 호출됩니다).
+     * IPointerClickHandler - OnPointerClick - 동일 오브젝트에서 포인터를 누르고 뗄 때 호출됩니다.
+     * IInitializePotentialDragHandler - OnInitializePotentialDrag - 드래그 타겟이 발견되었을 때 호출됩니다. 값을 초기화하는 데 사용할 수 있습니다.
+     * IBeginDragHandler - OnBeginDrag - 드래그가 시작되는 시점에 드래그 대상 오브젝트에서 호출됩니다.
+     * IDragHandler - OnDrag - 드래그 오브젝트가 드래그되는 동안 호출됩니다.
+     * IEndDragHandler - OnEndDrag - 드래그가 종료됐을 때 드래그 오브젝트에서 호출됩니다.
+     * IDropHandler - OnDrop - 드래그를 멈췄을 때 해당 오브젝트에서 호출됩니다.
+     * IScrollHandler - OnScroll - 마우스 휠을 스크롤했을 때 호출됩니다.
+     * IUpdateSelectedHandler - OnUpdateSelected - 선택한 오브젝트에서 매 틱마다 호출됩니다.
+     * ISelectHandler - OnSelect - 오브젝트를 선택하는 순간 호출됩니다.
+     * IDeselectHandler - OnDeselect - 선택한 오브젝트를 선택 해제할 때 호출됩니다.
+     * IMoveHandler - OnMove - 이동 이벤트(왼쪽, 오른쪽, 위쪽, 아래쪽 등)가 발생했을 때 호출됩니다.
+     * ISubmitHandler - OnSubmit - 전송 버튼이 눌렸을 때 호출됩니다.
+     * ICancelHandler - OnCancel - 취소 버튼이 눌렸을 때 호출됩니다.
+     *
      */
 
 

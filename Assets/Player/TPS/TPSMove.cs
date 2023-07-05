@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
@@ -137,6 +138,11 @@ public class TPSMove : MonoBehaviour
     {
         agent.acceleration = acceleration;
     }
+    public void StopNavMeshAgent()
+    {
+        agent.enabled = false;
+    }
+
 }
     
 

@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidbody;
+    /*[SerializeField] Rigidbody rigidbody;
     [SerializeField] Renderer renderer;
 
     [SerializeField] float upForce = 1f;
@@ -35,5 +35,5 @@ public class Cube : MonoBehaviour
     {
         objectPooler.RetuenTpPool(gameObject);
         CancelInvoke();
-    }
+    }*/
 }

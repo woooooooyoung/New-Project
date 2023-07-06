@@ -20,7 +20,6 @@ public class MonsterSpawner : MonoBehaviour
     [Header("-x, x and -z, z")]
     [SerializeField] float negativeX;
     [SerializeField] float positiveX;
-    // [Header("-z, z")]
     [SerializeField] float negativeZ;
     [SerializeField] float positiveZ;
     [Header("x, z Debug")]

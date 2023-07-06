@@ -87,7 +87,6 @@ public class PlayerMove : MonoBehaviour
     private void WalkUpate()
     {
         Debug.Log("Walk");
-        Debug.Log(moveDir);
         if (moveDir.magnitude == 0)
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 0, 0.5f);

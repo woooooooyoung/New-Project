@@ -51,8 +51,8 @@ public class FPSAnimatorChange : MonoBehaviour
     }
     private void TPSAnimatorLayerOff()
     {
-        animator.SetLayerWeight(7, 0);
-        animator.SetLayerWeight(8, 0);
+        //animator.SetLayerWeight(7, 0);
+        //animator.SetLayerWeight(8, 0);
     }
     private void OnFire()
     {
@@ -319,48 +319,48 @@ public class FPSAnimatorChange : MonoBehaviour
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        //animator.SetLayerWeight(4, 0);
+        //animator.SetLayerWeight(5, 0);
     }
     private void RifleLayer()
     {
         animator.SetLayerWeight(1, 1);
         animator.SetLayerWeight(2, 1);
         animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        //animator.SetLayerWeight(4, 0);
+        //animator.SetLayerWeight(5, 0);
     }
     private void GreatSwordLayer()
     {
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        //animator.SetLayerWeight(4, 0);
+        //animator.SetLayerWeight(5, 0);
     }
     private void SwordLayer()
     {
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 1);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 0);
+        //animator.SetLayerWeight(4, 0);
+        //animator.SetLayerWeight(5, 0);
     }
     private void ShieldLayer()
     {
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 1);
-        animator.SetLayerWeight(5, 0);
+        //animator.SetLayerWeight(4, 1);
+        //animator.SetLayerWeight(5, 0);
     }
     private void SwordandShieldLayer()
     {
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetLayerWeight(3, 0);
-        animator.SetLayerWeight(4, 0);
-        animator.SetLayerWeight(5, 1);
+        //animator.SetLayerWeight(4, 0);
+        //animator.SetLayerWeight(5, 1);
     }
 }
 

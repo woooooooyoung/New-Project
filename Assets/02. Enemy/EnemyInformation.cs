@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class EnemyInformation : MonoBehaviour
+public class EnemyInformation : MonoBehaviour, IHittable
 {
     public bool deBug;
     public static EnemyInformation instance;
@@ -22,6 +22,7 @@ public class EnemyInformation : MonoBehaviour
     public bool onDie;
     public bool onAttack;
     public bool offAttack;
+    public Waporn collider;
 
     public Transform target;
     [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
@@ -277,5 +278,11 @@ public class EnemyInformation : MonoBehaviour
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, attackRang);
+    }
+
+    public void TakeHit(int damage)
+    {
+        Debug.Log("-111");
+        currentHp -= damage;
     }
 }

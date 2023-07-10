@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class FPSAnimatorChange : MonoBehaviour
@@ -9,6 +10,9 @@ public class FPSAnimatorChange : MonoBehaviour
     [SerializeField] GameObject Rifle;
     [SerializeField] GameObject Sword;
     [SerializeField] GameObject Shield;
+
+    [SerializeField] RigBuilder rigBuilder;
+    [SerializeField] GameObject aim;
 
     private Animator animator;
     private enum WeaponChange { Idle, GreatSword, Rifle, Sword, Shield, SwordandShield }
@@ -152,6 +156,8 @@ public class FPSAnimatorChange : MonoBehaviour
         Rifle.SetActive(true);
         Sword.SetActive(false);
         Shield.SetActive(false);
+        rigBuilder.enabled = true;
+        aim.SetActive(true);
         if (Input.GetKey(KeyCode.Keypad0))
         {
             weaponChange = WeaponChange.Idle;
@@ -186,6 +192,8 @@ public class FPSAnimatorChange : MonoBehaviour
         Rifle.SetActive(false);
         Sword.SetActive(false);
         Shield.SetActive(false);
+        rigBuilder.enabled = false;
+        aim.SetActive(false);
         if (Input.GetKey(KeyCode.Keypad0))
         {
             weaponChange = WeaponChange.Idle;

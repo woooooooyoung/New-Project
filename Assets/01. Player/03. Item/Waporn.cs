@@ -6,7 +6,7 @@ public class Waporn : MonoBehaviour
 {
     [SerializeField] int damage;
 
-    Collider coll;
+    public Collider coll;
 
     private void Awake()
     {
@@ -25,11 +25,12 @@ public class Waporn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.name == "Player")
         {
             Debug.Log("아아아아아");
             IHittable hittable = other.GetComponent<IHittable>();
             hittable?.TakeHit(damage);
+            DisableWeapon();
         }
     }
 }

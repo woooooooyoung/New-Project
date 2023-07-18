@@ -7,12 +7,12 @@ public class GameManager : MonoBehaviour
 {
 
     private static GameManager instance;
-    private static SceneManager sceneManager;
+    private static SceneManagerEX scene;
     private static PoolManager poolManager;
     private static ResourceManager resourceManager;
 
     public static GameManager Instance { get { return instance; } }
-    public static SceneManager Scene { get { return sceneManager; } }
+    public static SceneManagerEX Scene { get { return scene; } }
     public static PoolManager Pool { get { return poolManager; } }
     public static ResourceManager Resource { get { return resourceManager; } }
 
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         GameObject sceneObj = new GameObject();
         sceneObj.name = "SceneManager";
         sceneObj.transform.parent = transform;
-        sceneManager = sceneObj.AddComponent<SceneManager>();
+        scene = sceneObj.AddComponent<SceneManagerEX>();
 
         GameObject poolObj = new GameObject();
         poolObj.name = "PoolManager";

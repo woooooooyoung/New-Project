@@ -24,4 +24,26 @@ public class GreatSwordAttack : MonoBehaviour
             }
         }
     }
+    //public void Attack()
+    //{
+    //    if (p_GreatSword.activeSelf)
+    //    {
+    //        if (Input.GetMouseButtonDown(0))
+    //        {
+    //            a_GreatSword.SetTrigger("p_Attack");
+    //        }
+    //    }
+    //}
+    //private void OnAttack(InputValue value)
+    //{
+    //    Attack();
+    //}
+    public void StartAttack()
+    {
+        Debug.Log("Ω√¿€");
+    }
+    public void EndAttack()
+    {
+        Debug.Log("≥°");
+    }
 }

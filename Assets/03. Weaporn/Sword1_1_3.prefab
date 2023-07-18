@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8256794717846951159}
   - component: {fileID: 4988260615913593682}
   - component: {fileID: 7123898357932175256}
+  - component: {fileID: 6380048725036452707}
   - component: {fileID: 7475328486853125114}
   - component: {fileID: 4449885137597548541}
   - component: {fileID: 4434498424168541646}
   - component: {fileID: 3793256322329216737}
   - component: {fileID: 1643206996362191745}
-  - component: {fileID: 6380048725036452707}
   m_Layer: 0
   m_Name: Sword1_1_3
   m_TagString: Untagged
@@ -89,6 +89,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6380048725036452707
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781411931545570893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08163665, y: 0.82626325, z: 0.032293156}
+  m_Center: {x: 0.0015797317, y: 0.18130288, z: -0.0013337433}
 --- !u!65 &7475328486853125114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -155,16 +168,3 @@ CapsuleCollider:
   m_Height: 0.33157527
   m_Direction: 1
   m_Center: {x: 0.0007819012, y: -0.41578764, z: 0}
---- !u!65 &6380048725036452707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8781411931545570893}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.08163665, y: 0.82626325, z: 0.032293156}
-  m_Center: {x: 0.0015797317, y: 0.18130288, z: -0.0013337433}

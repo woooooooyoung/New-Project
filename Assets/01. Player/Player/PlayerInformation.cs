@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
-public class PlayerInformation : MonoBehaviour
+public class PlayerInformation : MonoBehaviour, IHittable
 {
 
     [Header("Information")]
@@ -108,5 +108,11 @@ public class PlayerInformation : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void IHittable.TakeHit(int damage)
+    {
+        Debug.Log("-222");
+        p_CurrentHP -= damage;
     }
 }
